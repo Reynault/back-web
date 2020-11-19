@@ -4,11 +4,9 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { RecipyModule } from './recipy/recipy.module';
 import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
-import { User } from './user';
-import { Recipy } from './recipy';
-import { Recipy.Dao } from './recipy.dao';
-import { User.Dao } from './user.dao';
 import * as Config from 'config';
+import { RecipyDao } from './recipy/dao/recipy.dao';
+import { UserDao } from './user/dao/user.dao';
 
 @Module({
   imports: [
@@ -19,6 +17,6 @@ import * as Config from 'config';
       Config.get<MongooseModuleOptions>('mongodb.options'))
   ],
   controllers: [AppController],
-  providers: [AppService, User, Recipy, Recipy.Dao, User.Dao],
+  providers: [AppService, RecipyDao, UserDao],
 })
 export class AppModule {}
