@@ -18,7 +18,7 @@ export class Recipe extends Document {
   })
   description: string;
 
-  @Prop(raw({
+  @Prop(raw([{
     'name': {
       type: String,
       required: true,
@@ -32,8 +32,8 @@ export class Recipe extends Document {
       type: String,
       required: true,
     },
-  }))
-  ingredients: string[];
+  }]))
+  ingredients: any[];
 
   @Prop({
     type: Array,
@@ -41,12 +41,6 @@ export class Recipe extends Document {
     trim: true,
   })
   steps: string[];
-
-  @Prop({
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: 'Recipe',
-  })
-  linked: any[];
 }
 
 export const RecipeSchema = SchemaFactory.createForClass(Recipe);

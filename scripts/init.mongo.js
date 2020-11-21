@@ -5,15 +5,11 @@
   // Création des collections
   db.createCollection('web_users');
   db.createCollection('recipes');
-  db.createCollection('units');
 
-  r1 = ObjectId();
-  r2 = ObjectId();
 
   // Insertion des recettes
   db.getCollection('recipes').insertMany([
     {
-      '_id': r1,
       'title': 'Crêpes',
       'description': 'La crêpe est un mets composé d\'une couche plus ou moins fine de pâte, faite à base de farine (principalement de blé ou de sarrasin) et d\'œufs agglomérés à un liquide (lait, parfois mélangé à de l\'eau ou de la bière). Elle est généralement de forme ronde.',
       'ingredients': [
@@ -55,12 +51,8 @@
         'Parfumer de rhum.',
         'Faire chauffer une poêle antiadhésive et la huiler très légèrement. Y verser une louche de pâte, la répartir dans la poêle puis attendre qu\'elle soit cuite d\'un côté avant de la retourner. Cuire ainsi toutes les crêpes à feu doux.',
       ],
-      'linked': [
-        r2
-      ],
     },
     {
-      '_id':r2,
       'title': 'Gaufres',
       'description': 'Une gaufre est un mets de pâte légère cuite entre deux plaques métalliques, articulées entre elles par une ou des charnières, ornées de motifs qui s\'impriment dans la pâte et donnent à la pâtisserie sa forme caractéristique.',
       'ingredients': [
@@ -101,12 +93,8 @@
         'Battre les blancs en neige avec une pincée de sel et les ajouter au restant en remuant délicatement.',
         'Cuire le tout dans un gaufrier légèrement beurré.',
       ],
-      'linked': [
-        r1
-      ],
     },
     {
-      '_id':r2,
       'title': 'Donuts',
       'description': 'Donut, ou doughnut1, littéralement « noix de pâte », veut dire « beignet sucré » en Amérique du Nord (beigne au Canada francophone), nom masculin, et beignet en Louisiane ainsi que pour les Acadiens. La version la plus courante est de forme torique, à texture dense, souvent couverte d’un glaçage, qui fut popularisée dans les années 1950 par les chaînes de restauration rapide Dunkin’ Donuts et Krispy Kreme. Au Canada, cette pâtisserie est principalement diffusée par la chaîne Tim Hortons.',
       'ingredients': [
@@ -136,12 +124,14 @@
           'unit': "g",
         },
         {
-          'name': 'cl de Lait',
+          'name': 'Lait',
           'quantity': 15,
+          'unit': 'cl'
         },
         {
-          'name': 'cuillière(s) à soupe de Beurre fondu',
+          'name': 'Beurre fondu',
           'quantity': 15,
+          'unit': 'cuillière(s) à soupe'
         },
         {
           'name': 'Vanille liquide',
@@ -154,9 +144,6 @@
         'Délayer peu à peu le tout en y ajoutant le lait pour qu\'il n\'y ait pas de grumeaux.',
         'Battre les blancs en neige avec une pincée de sel et les ajouter au restant en remuant délicatement.',
         'Cuire le tout dans un gaufrier légèrement beurré.',
-      ],
-      'linked': [
-        r1
       ],
     },
   ]);

@@ -47,6 +47,6 @@ export class RecipeController {
 
   @Put(':id')
   put(@Param() idParam: HandlerRecipe, @Body() modifyRecipe: ModifyRecipeDto): Observable<RecipeEntity | void> {
-    return this.put(idParam, modifyRecipe);
+    return this.service.put(idParam.id, modifyRecipe);
   }
 }

@@ -44,18 +44,4 @@ export class ModifyRecipeDto {
   })
   @IsOptional()
   steps?: string[];
-
-  @IsArray({
-    message:"Les liens doivent être sous la forme d'une liste"
-  })
-  @IsNotEmpty({
-    each: true,
-    message:"Chaque lien ne doit pas être vide"
-  })
-  @IsString({
-    each: true,
-    message: "Chaque lien doit être une string"
-  })
-  @IsOptional()
-  links?: string[];
 }

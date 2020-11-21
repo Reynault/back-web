@@ -42,16 +42,4 @@ export class CreateRecipeDto {
   })
   steps: string[];
 
-  @IsArray({
-    message:"Les liens doivent être sous la forme d'une liste"
-  })
-  @IsNotEmpty({
-    each: true,
-    message:"Chaque lien ne doit pas être vide"
-  })
-  @IsString({
-    each: true,
-    message: "Chaque lien doit être une string"
-  })
-  links: string[];
 }
