@@ -6,7 +6,7 @@ import { AppConfig } from './interfaces/app-config.interface';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { SwaggerConfig } from './interfaces/swagger-config.interface';
 import * as Config from 'config';
-import { RecipyModule } from './recipy/recipy.module';
+import { RecipeModule } from './recipe/recipe.module';
 import { UserModule } from './user/user.module';
 
 
@@ -37,7 +37,7 @@ async function bootstrap(config: AppConfig, swaggerConfig: SwaggerConfig) {
 
   // create swagger document
   const peopleDocument = SwaggerModule.createDocument(app, options, {
-    include: [RecipyModule, UserModule],
+    include: [RecipeModule, UserModule],
   });
 
   // setup swagger module
