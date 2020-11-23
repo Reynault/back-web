@@ -43,7 +43,8 @@ export class AuthService {
   generateJWT(user: UserEntity): any {
     return {
       access_token: this._jwtService.sign({ username: user.username }),
-      expiry: new Date(jwtConstants.expireTimeNumber * 1000).getTime()
+      expiry: new Date(jwtConstants.expireTimeNumber * 1000).getTime(),
+      username: user.username
     };
   }
 
