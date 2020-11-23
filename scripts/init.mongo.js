@@ -1,9 +1,9 @@
 /**
- * Script d'initialisation de la base de données
+ * INSERTION
  */
 {
   // Création des collections
-  db.createCollection('web_users');
+  db.createCollection('users');
   db.createCollection('recipes');
 
 
@@ -148,6 +148,5 @@
     },
   ]);
 
-  db.getCollection('recipes').createIndex({ title: 1 }, { unique: true });
-  db.getCollection('web_users').createIndex({ login: 1 }, { unique: true });
+  db.getCollection('users').createIndex({ username: 1 }, { unique: true });
 }

@@ -2,10 +2,10 @@ import { IsMongoId, IsNotEmpty } from 'class-validator';
 
 export class HandlerRecipe{
   @IsMongoId({
-    message : "L'id doit correspondre à un identifiant de MongoDB"
+    message : "Id must be a mongoDB id"
   })
   @IsNotEmpty({
-    message : "L'id ne doit pas être vide"
+    message : "Id must not be empty"
   })
   id: string;
 }

@@ -5,18 +5,18 @@ import { Type } from 'class-transformer';
 export class CreateRecipeDto {
 
   @IsString({
-    message:"Titre de type string"
+    message:"Title must be string"
   })
   @IsNotEmpty({
-    message:"Titre vide"
+    message:"Title must not be empty"
   })
   title: string;
 
   @IsString({
-    message:"Description de type string"
+    message:"Description must be string"
   })
   @IsNotEmpty({
-    message:"Description non vide"
+    message:"Description must not be empty"
   })
   description: string;
 
@@ -30,15 +30,15 @@ export class CreateRecipeDto {
   ingredients: RecipeIngredientDto[];
 
   @IsArray({
-    message:"Les étapes doivent être sous la forme d'une liste"
+    message: "Steps must be an array of strings"
   })
   @IsNotEmpty({
     each: true,
-    message:"Chaque étape ne doit pas être vide"
+    message:"Steps must not be empty"
   })
   @IsString({
     each: true,
-    message: "Chaque étape doit être une string"
+    message: "Each step must be a string"
   })
   steps: string[];
 

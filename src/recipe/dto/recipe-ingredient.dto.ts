@@ -2,24 +2,24 @@ import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class RecipeIngredientDto{
   @IsString({
-    message:"Nom de type string"
+    message:"Name must be a string"
   })
   @IsNotEmpty({
-    message:"Nom vide"
+    message:"Name must not be empty"
   })
   name: string;
 
   @IsNumber()
   @IsNotEmpty({
-    message:"Quantité vide"
+    message:"Empty quantity"
   })
   quantity: number;
 
   @IsString({
-    message:"Unité de type string"
+    message:"Unit must be a string"
   })
   @IsNotEmpty({
-    message:"Unité vide"
+    message:"Empty unit"
   })
   unit: string;
 }

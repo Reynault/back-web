@@ -24,10 +24,6 @@ export class RecipeEntity {
   @Type(() => String)
   steps: string[];
 
-  @Expose()
-  @Type(() => String)
-  linked: string[];
-
   constructor(partial: Recipe) {
     Object.assign(this, partial);
   }

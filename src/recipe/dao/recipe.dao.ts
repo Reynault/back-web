@@ -6,6 +6,7 @@ import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ModifyRecipeDto } from '../dto/modify-recipe.dto';
 import { CreateRecipeDto } from '../dto/create-recipe.dto';
+import * as mongoose from 'mongoose';
 
 @Injectable()
 export class RecipeDao {
@@ -50,5 +51,14 @@ export class RecipeDao {
   save(createRecipeDto: CreateRecipeDto): Observable<Recipe> {
     return from(new this._recipeModel(createRecipeDto).save()).pipe(
       map((doc: MongooseDocument) => doc.toJSON()));
+  }
+
+  findByUser(recipes: mongoose.Types.ObjectId[]): Observable<Recipe[] | void>{
+    return from(this._recipeModel.find({_id : {$in : recipes}})).pipe(
+      map((docs : MongooseDocument[]) => (docs.length > 0 && !!docs)
+        ? docs.map(_ => _.toJSON())
+        : undefined
+      )
+    );
   }
 }

@@ -1,5 +1,5 @@
 /**
- Script qui permet de drop les collections
+ SUPPRESSION
  */
-db.getCollection("web_users").drop();
+db.getCollection("users").drop();
 db.getCollection("recipes").drop();
