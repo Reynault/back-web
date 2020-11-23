@@ -4,5 +4,6 @@
  */
 export const jwtConstants = {
   secret: 'secretKey',
-  expireTime: '360s'
+  expireTime: '360s',
+  expireTimeNumber: 360
 }

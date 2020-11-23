@@ -15,6 +15,7 @@ import { JwtService } from '@nestjs/jwt';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ModifyUserDto } from './dto/modify-user.dto';
 import { AuthDao } from './dao/auth.dao';
+import { jwtConstants } from '../constants';
 
 @Injectable()
 export class AuthService {
@@ -40,7 +41,10 @@ export class AuthService {
   }
 
   generateJWT(user: UserEntity): any {
-    return { access_token: this._jwtService.sign({ username: user.username }) };
+    return {
+      access_token: this._jwtService.sign({ username: user.username }),
+      expiry: new Date(jwtConstants.expireTimeNumber * 1000).getTime()
+    };
   }
 
   comparePassword(givenPass: string, userPass: string): Observable<boolean> {
@@ -108,8 +112,9 @@ export class AuthService {
       mergeMap(_ => this.findUserAndValidate(_)),
       mergeMap(user => !!user
         ? of(this.generateJWT(user))
-        : throwError(new UnauthorizedException('User not found')),
+        : throwError(new UnauthorizedException()),
       ),
+      catchError(err => throwError(new UnauthorizedException()))
     );
   }
 }

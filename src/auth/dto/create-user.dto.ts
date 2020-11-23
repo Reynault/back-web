@@ -1,6 +1,9 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
 
 export class CreateUserDto{
+  @MaxLength(50, {
+    message:"Username too long"
+  })
   @IsString({
     message:"Username must be a string"
   })
@@ -9,6 +12,9 @@ export class CreateUserDto{
   })
   username: string;
 
+  @MaxLength(200, {
+    message:"Password too long"
+  })
   @IsString({
     message:"Password must be a string"
   })
