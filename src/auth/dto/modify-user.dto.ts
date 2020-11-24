@@ -1,6 +1,8 @@
 import { IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class ModifyUserDto{
+  @ApiProperty({name: 'username', description:'Nom d\'utilisateur', example:'Bob'})
   @MaxLength(50, {
     message:"Username too long"
   })
@@ -12,6 +14,7 @@ export class ModifyUserDto{
   })
   username: string;
 
+  @ApiPropertyOptional({name: 'password', description:'Mot de passe', example:'jZa8'})
   @MaxLength(200, {
     message:"Password too long"
   })
@@ -24,3 +27,4 @@ export class ModifyUserDto{
   @IsOptional()
   password?: string;
 }
+

@@ -35,12 +35,12 @@ async function bootstrap(config: AppConfig, swaggerConfig: SwaggerConfig) {
     .build();
 
   // create swagger document
-  const peopleDocument = SwaggerModule.createDocument(app, options, {
+  const recipesDocument = SwaggerModule.createDocument(app, options, {
     include: [RecipeModule, AuthModule],
   });
 
   // setup swagger module
-  SwaggerModule.setup(swaggerConfig.path, app, peopleDocument);
+  SwaggerModule.setup(swaggerConfig.path, app, recipesDocument);
 
   await app.listen(config.port, config.host);
   Logger.log(`Application served at http://${config.host}:${config.port}`, 'bootstrap');

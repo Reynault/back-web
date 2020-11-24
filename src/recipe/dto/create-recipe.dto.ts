@@ -1,9 +1,12 @@
 import { IsArray, IsInstance, IsNotEmpty, IsString, MaxLength, ValidateNested } from 'class-validator';
 import { RecipeIngredientDto } from './recipe-ingredient.dto';
 import { Type } from 'class-transformer';
+import { ApiProperty } from '@nestjs/swagger';
+import { IngredientEntity } from '../entities/ingredient.entity';
 
 export class CreateRecipeDto {
 
+  @ApiProperty({name: 'title', description: 'Titre', example: 'Crêpes'})
   @IsString({
     message:"Title must be string"
   })
@@ -12,6 +15,7 @@ export class CreateRecipeDto {
   })
   title: string;
 
+  @ApiProperty({name: 'desciption', description: 'Description', example: 'Superbe recette de crêpes'})
   @IsString({
     message:"Description must be string"
   })
@@ -20,6 +24,7 @@ export class CreateRecipeDto {
   })
   description: string;
 
+  @ApiProperty({name: 'ingredients', description: 'Ingredients', example: [{"name":"Oeufs","quantity":3,"unit":"entier(s)"},{"name":"Farine","quantity":300,"unit":"g"},{"name":"Lait","quantity":60,"unit":"cl"}], type:[IngredientEntity]})
   @IsInstance(RecipeIngredientDto, {
     each: true
   })
@@ -29,6 +34,7 @@ export class CreateRecipeDto {
   @Type(() => RecipeIngredientDto)
   ingredients: RecipeIngredientDto[];
 
+  @ApiProperty({name: 'steps', description: 'Etapes', example: '[\'Mélange la farine, les oeufs et le lait.\',\'Cuire les crêpes dans une poêle chaude\']'})
   @IsArray({
     message: "Steps must be an array of strings"
   })
