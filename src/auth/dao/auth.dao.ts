@@ -40,8 +40,8 @@ export class AuthDao {
   hasRecipe(recipeId: string, username: string): Observable<boolean> {
     return from(this._userModel.exists({
       username: username,
-      recipes: mongoose.Types.ObjectId(recipeId)})
-    );
+      recipes: {$in: [mongoose.Types.ObjectId(recipeId)]}
+    }));
   }
 
   put(username: string, user: ModifyUserDto): Observable<User | void> {

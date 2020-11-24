@@ -16,6 +16,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { ModifyUserDto } from './dto/modify-user.dto';
 import { AuthDao } from './dao/auth.dao';
 import { jwtConstants } from '../constants';
+import { Token } from './interfaces/token.interface';
 
 @Injectable()
 export class AuthService {
@@ -40,7 +41,7 @@ export class AuthService {
     );
   }
 
-  generateJWT(user: UserEntity): any {
+  generateJWT(user: UserEntity): Token {
     return {
       access_token: this._jwtService.sign({ username: user.username }),
       expiry: new Date(jwtConstants.expireTimeNumber * 1000).getTime(),
@@ -56,7 +57,7 @@ export class AuthService {
     return { password: bcrypt.hashSync(passToHash, 10) };
   }
 
-  post(user: CreateUserDto): Observable<any> {
+  post(user: CreateUserDto): Observable<Token | void> {
     return of(user).pipe(
       map(user => Object.assign(user, this.hashPassword(user.password))),
       mergeMap(user =>
@@ -108,7 +109,7 @@ export class AuthService {
     );
   }
 
-  login(user: ConnectUserDto): Observable<any> {
+  login(user: ConnectUserDto): Observable<Token | void> {
     return of(user).pipe(
       mergeMap(_ => this.findUserAndValidate(_)),
       mergeMap(user => !!user

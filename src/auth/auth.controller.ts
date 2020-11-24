@@ -18,6 +18,7 @@ import { ModifyUserDto } from './dto/modify-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { JwtAuthGuard } from './strategies/jwt.strategy';
 import { ConnectUserDto } from './dto/connect-user.dto';
+import { Token } from './interfaces/token.interface';
 
 @Controller()
 @UseInterceptors(ClassSerializerInterceptor)
@@ -27,7 +28,7 @@ export class AuthController {
   }
 
   @Post('login')
-  login(@Body() dto: ConnectUserDto): Observable<any> {
+  login(@Body() dto: ConnectUserDto): Observable<Token | void> {
     return this._service.login(dto);
   }
 
@@ -39,7 +40,7 @@ export class AuthController {
   }
 
   @Post('subscribe')
-  post(@Body() user: CreateUserDto): Observable<any> {
+  post(@Body() user: CreateUserDto): Observable<Token | void> {
     return this._service.post(user);
   }
 

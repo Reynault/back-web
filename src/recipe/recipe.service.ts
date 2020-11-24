@@ -107,4 +107,8 @@ export class RecipeService {
       ),
     );
   }
+
+  userHasRecipe(recipeId: string, username: string): Observable<boolean>{
+    return this._user.hasRecipe(recipeId, username);
+  }
 }

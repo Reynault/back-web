@@ -5,9 +5,11 @@ import {
   Delete,
   Get,
   Param,
-  Request,
   Post,
-  Put, UseGuards,
+  Put,
+  Query,
+  Request,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
@@ -27,8 +29,8 @@ import { AuthDao } from '../auth/dao/auth.dao';
 export class RecipeController {
 
   constructor(private service: RecipeService,
-              private dao : RecipeDao,
-              private user : AuthDao) {
+              private dao: RecipeDao,
+              private user: AuthDao) {
   }
 
   @Get()
@@ -37,14 +39,20 @@ export class RecipeController {
   }
 
   @Get(':id')
-  getId(@Param() idParam: HandlerRecipe): Observable<RecipeEntity | void>{
+  getId(@Param() idParam: HandlerRecipe): Observable<RecipeEntity | void> {
     return this.service.findById(idParam.id);
   }
 
   @Get('user')
   @UseGuards(JwtAuthGuard)
-  getFromUser(@Request() req): Observable<RecipeEntity[] | void>{
+  getFromUser(@Request() req): Observable<RecipeEntity[] | void> {
     return this.service.findFromUser(req.user.username);
+  }
+
+  @Get('has')
+  @UseGuards(JwtAuthGuard)
+  hasRecipe(@Request() req, @Query() idParam: HandlerRecipe): Observable<boolean> {
+    return this.service.userHasRecipe(idParam.id, req.user.username);
   }
 
   @Post()
