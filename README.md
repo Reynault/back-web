@@ -91,6 +91,7 @@ $ docker-compose start
 - Créez la base de données cookie_book
 - Ajoutez les données en utilisant le [script fourni](https://github.com/Reynault/back-web/blob/master/scripts/init.mongo.js)
 - Un [autre script](https://github.com/Reynault/back-web/blob/master/scripts/drop.mongo.js) permet de les supprimer
+- La configuration du serveur se trouve dans le fichier default.yml dans le dossier config à la racine du projet
 
 ## Lancement du Back
 
