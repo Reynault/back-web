@@ -41,12 +41,12 @@ export class AuthService {
     );
   }
 
-  generateJWT(user: UserEntity): Token {
-    return {
+  generateJWT(user: UserEntity): Observable<Token> {
+    return of({
       access_token: this._jwtService.sign({ username: user.username }),
       expiry: new Date(jwtConstants.expireTimeNumber * 1000).getTime(),
       username: user.username
-    };
+    });
   }
 
   comparePassword(givenPass: string, userPass: string): Observable<boolean> {
@@ -70,7 +70,7 @@ export class AuthService {
           ),
         ),
       ),
-      map(_ => this.generateJWT(_)),
+      mergeMap(_ => this.generateJWT(_)),
     );
   }
 
@@ -113,7 +113,7 @@ export class AuthService {
     return of(user).pipe(
       mergeMap(_ => this.findUserAndValidate(_)),
       mergeMap(user => !!user
-        ? of(this.generateJWT(user))
+        ? this.generateJWT(user)
         : throwError(new UnauthorizedException()),
       ),
       catchError(err => throwError(new UnauthorizedException()))
