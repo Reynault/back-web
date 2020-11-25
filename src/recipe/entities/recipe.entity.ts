@@ -10,6 +10,11 @@ export class RecipeEntity {
   @Type(() => String)
   id: string;
 
+  @ApiProperty({ name: 'username', description: "nom de l'utilisateur", example: 'bob' })
+  @Expose()
+  @Type(() => String)
+  username: string;
+
   @ApiProperty({ name: 'title', description: 'Titre', example: 'Crêpes' })
   @Expose()
   @Type(() => String)

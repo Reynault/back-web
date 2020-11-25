@@ -6,6 +6,12 @@ export class Recipe extends Document {
   @Prop({
     type: String,
     required: true,
+  })
+  username: string;
+
+  @Prop({
+    type: String,
+    required: true,
     trim: true,
   })
   title: string;

@@ -10,6 +10,27 @@ export class User extends Document {
   })
   username: string;
 
+
+  @Prop({
+    type: String,
+    required: true,
+  })
+  email: string;
+
+
+  @Prop({
+    type: String,
+    required: true,
+  })
+  firstname: string;
+
+
+  @Prop({
+    type: String,
+    required: true,
+  })
+  lastname: string;
+
   @Prop({
     type: String,
     required: true,

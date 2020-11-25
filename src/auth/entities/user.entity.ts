@@ -14,6 +14,21 @@ export class UserEntity {
   @Type(() => String)
   username: string;
 
+  @ApiProperty({name:'email', description:'Email', example:'Bob@mail.com'})
+  @Expose()
+  @Type(() => String)
+  email: string;
+
+  @ApiProperty({name:'firstname', description:'Nom', example:'Bob'})
+  @Expose()
+  @Type(() => String)
+  firstname: string;
+
+  @ApiProperty({name:'lastname', description:'Prénom', example:'Ross'})
+  @Expose()
+  @Type(() => String)
+  lastname: string;
+
   @ApiProperty({name:'password', description:'Mot de passe', example:'jZa8'})
   @Exclude()
   @Type(() => String)

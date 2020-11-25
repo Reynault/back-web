@@ -100,7 +100,7 @@ export class AuthService {
   }
 
   find(username: string): Observable<UserEntity> {
-    return this._dao.findOneByLogin(username).pipe(
+    return this._dao.find(username).pipe(
       map(_ => !!_ ? new UserEntity(_) : undefined),
       mergeMap(_ => !!_
         ? of(_)

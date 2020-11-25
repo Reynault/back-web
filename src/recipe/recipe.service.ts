@@ -44,7 +44,7 @@ export class RecipeService {
   }
 
   findFromUser(username: string): Observable<RecipeEntity[] | void>{
-    return this._user.findOneByLogin(username).pipe(
+    return this._user.find(username).pipe(
       mergeMap(_ => !!_
         ? this._dao.findByUser(_.recipes).pipe(
           map(_ => !!_

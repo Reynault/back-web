@@ -1,10 +1,27 @@
-import { IsArray, IsInstance, IsNotEmpty, IsString, MaxLength, ValidateNested } from 'class-validator';
+import {
+  IsArray,
+  IsInstance,
+  IsMongoId,
+  isMongoId,
+  IsNotEmpty,
+  IsString,
+  MaxLength,
+  ValidateNested,
+} from 'class-validator';
 import { RecipeIngredientDto } from './recipe-ingredient.dto';
 import { Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 import { IngredientEntity } from '../entities/ingredient.entity';
 
 export class CreateRecipeDto {
+  @ApiProperty({name: 'Username', description: "Username de l'utilisateur", example: 'bob'})
+  @IsString({
+    message:"Username must be string"
+  })
+  @IsNotEmpty({
+    message:"Username must not be empty"
+  })
+  username: string;
 
   @ApiProperty({name: 'title', description: 'Titre', example: 'Crêpes'})
   @IsString({

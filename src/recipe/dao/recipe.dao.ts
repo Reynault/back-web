@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, MongooseDocument } from 'mongoose';
 import { Recipe } from '../schemas/recipe.schema';
 import { from, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { ModifyRecipeDto } from '../dto/modify-recipe.dto';
 import { CreateRecipeDto } from '../dto/create-recipe.dto';
 import * as mongoose from 'mongoose';
